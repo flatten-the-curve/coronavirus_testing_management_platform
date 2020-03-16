@@ -7,7 +7,11 @@ class Host < ApplicationRecord
   geocoded_by :full_address
 
   def full_address
-    [address_1, address_2, state, zipcode].compact.join(",")
+    [address_1, address_2, city, state].compact.join(",")
+  end
+
+  def google_maps_url
+    "https://www.google.com/maps/place/#{full_address}/@#{latitude},#{longitude},17z"
   end
 
 end

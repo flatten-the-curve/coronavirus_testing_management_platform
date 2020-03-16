@@ -477,7 +477,7 @@
       return {
         mapTypeId: this.primitives().mapTypes('ROADMAP'),
         center: new (this.primitives().latLng)(0, 0),
-        zoom: 8
+        zoom: 5
       };
     };
 

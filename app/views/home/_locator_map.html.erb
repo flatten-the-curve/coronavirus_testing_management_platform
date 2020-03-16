@@ -13,16 +13,12 @@
 </div>
 
 <script>
+  let allMarkers = <%= @all_markers %>
+
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers([
-        {
-          "lat": 33.7490,
-          "lng": -84.3880,
-          "infowindow": "hello!"
-        }
-      ]);
+      markers = handler.addMarkers(allMarkers);
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
     });
