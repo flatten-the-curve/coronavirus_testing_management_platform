@@ -1,25 +1,22 @@
-<div class='row'>
-  <div class='col-lg-12 text-right'>
-    <a href=<%= new_user_session_path %>>I host a testing center <i class='fa fa-external-link'></i></a>
-  </div>
-  <div class='col-lg-12'>
-    <div style='width: 100%;'>
-      <div id="map" style='width: 100%; height: 600px;'></div>
+<% if @user.present? %>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="location-info-tab" data-toggle="tab" href="#location-info" role="tab" aria-controls="location-info"
+        aria-selected="true">Location Info</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="map-tab" data-toggle="tab" href="#map-show" role="tab" aria-controls="map"
+        aria-selected="false">Map</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="location-info" role="tabpanel" aria-labelledby="location-info">
+      <%= render "host_info.html" %>
+    </div>
+    <div class="tab-pane fade" id="map-show" role="tabpanel" aria-labelledby="map">
+      <%= render "locator_map.html" %>
     </div>
   </div>
-</div>
-
-<script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-    markers = handler.addMarkers([
-      {
-        "lat": 33.7490,
-        "lng": -84.3880,
-        "infowindow": "hello!"
-      }
-    ]);
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-  });
-</script>
+<% else %>
+  <%= render "locator_map.html" %>
+<% end %>
