@@ -10,16 +10,25 @@
         <b>Host Address:</b> <%= @host.full_address %>
       </div>
     </div>
-    <div style="margin-top: 10px; margin-bottom: 10px" class='col-lg-4 text-center'>
+    <div style="margin-top: 10px; margin-bottom: 10px;  height: 300px;   padding: 10px" class='col-lg-4 text-center card'>
       <h3>Completed Today</h3>
       <h3><%= @patient_counts %></h3>
       <%= form_for @host.patient_counts.new do |f| %>
         <%= f.hidden_field :amount, value: 1 %>
-        <button class='btn btn-success'><i class='fa fa-plus'></i>  Add 1 To Completed Count</button>
+        <button class='btn btn-success' style='font-size: 24px;'><i class='fa fa-plus'></i>  Add 1 To Completed Count</button>
       <% end %>
     </div>
-    <div style="margin-top: 10px; margin-bottom: 20px" class='col-lg-4'>
-
+    <div style="margin-top: 10px; margin-bottom: 20px; height: 300px;  padding: 10px" class='col-lg-8 text-center card'>
+      <h3>Current Line Count</h3>
+      <h3><%= @line_counts %></h3>
+      <%= form_for @host.line_counts.new do |f| %>
+        <%= f.hidden_field :amount, value: 1 %>
+        <button class='btn btn-success' style='font-size: 24px; margin: 10px;'><i class='fa fa-plus'></i>  Add 1 To Line Count</button>
+      <% end %>
+      <%= form_for @host.line_counts.new do |f| %>
+        <%= f.hidden_field :amount, value: -1 %>
+        <button class='btn btn-danger' style='font-size: 24px; margin: 10px;'><i class='fa fa-plus'></i>  Remove 1 From Line Count</button>
+      <% end %>
     </div>
     <div class='col-lg-12'>
     </div>
