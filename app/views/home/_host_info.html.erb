@@ -1,17 +1,5 @@
   <div class='row'>
-    <div style="margin-top: 10px; margin-bottom: 10px" class='col-lg-12 text-center'>
-      <h3>Completed Today</h3>
-      <h3><%= @patient_counts %></h3>
-    </div>
-    <div style="margin-top: 10px; margin-bottom: 20px" class='col-lg-12 text-center'>
-      <%= form_for @host.patient_counts.new do |f| %>
-        <%= f.hidden_field :amount, value: 1 %>
-        <button class='btn btn-success'><i class='fa fa-plus'></i>  Add 1 To Completed Count</button>
-      <% end %>
-    </div>
     <div class='col-lg-12'>
-    </div>
-    <div class='col-lg-6'>
       <div class='form-group'>
         <b>Your email:</b> <%= @user.email %>
       </div>
@@ -22,21 +10,17 @@
         <b>Host Address:</b> <%= @host.full_address %>
       </div>
     </div>
-    <div class='col-lg-6'>
-      <div style='width: 100%;'>
-        <div id="host-map" style='width: 100%; height: 300px;'></div>
-      </div>
+    <div style="margin-top: 10px; margin-bottom: 10px" class='col-lg-4 text-center'>
+      <h3>Completed Today</h3>
+      <h3><%= @patient_counts %></h3>
+      <%= form_for @host.patient_counts.new do |f| %>
+        <%= f.hidden_field :amount, value: 1 %>
+        <button class='btn btn-success'><i class='fa fa-plus'></i>  Add 1 To Completed Count</button>
+      <% end %>
+    </div>
+    <div style="margin-top: 10px; margin-bottom: 20px" class='col-lg-4'>
+
+    </div>
+    <div class='col-lg-12'>
     </div>
   </div>
-
-<script>
-  let hostMarker = <%= @current_host_marker %>
-  $(document).ready(function(){
-    locationHandler = Gmaps.build('Google');
-    locationHandler.buildMap({ provider: {}, internal: {id: 'host-map'}}, function(){
-      markers = locationHandler.addMarkers(hostMarker);
-      locationHandler.bounds.extendWith(markers);
-      locationHandler.fitMapToBounds();
-    });
-  })
-</script>

@@ -2,7 +2,7 @@
   <div class='col-lg-12 text-right'>
     <% if @host.present? %>
     <% else %>
-      <a href=<%= new_user_session_path %>>I host a testing center <i class='fa fa-external-link'></i></a>
+      <a href=<%= new_user_session_path %>>Site Official Login <i class='fa fa-external-link'></i></a>
     <% end %>
   </div>
   <div class='col-lg-12'>
@@ -14,7 +14,6 @@
 
 <script>
   let allMarkers = <%= @all_markers %>
-
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){

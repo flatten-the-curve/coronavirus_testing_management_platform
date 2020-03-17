@@ -20,7 +20,6 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :host_id, as: :select, collection: Host.all.map{|x| [x.name,x.id]}
-
     end
     f.actions
   end
