@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         "lng": @host.longitude,
         "infowindow": "<div>#{@host.name}<br><a target='_blank' href='#{@host.google_maps_url}'>Route me here!</a></div>"
       }].to_json.html_safe
-      @patient_counts = @host.patient_counts.sum(:amount)
+      @patient_counts = @host.patient_counts.where(created_at: [Time.now.beginning_of_day..Time.now.end_of_day]).sum(:amount)
     end
     @all_markers = []
     Host.all.each do |h|
