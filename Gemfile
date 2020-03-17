@@ -7,6 +7,7 @@ gem "font-awesome-rails"
 gem 'gmaps4rails'
 gem 'geocoder'
 gem 'delayed_job_active_record'
+gem 'activeadmin'
 gem 'underscore-rails', '~> 1.8', '>= 1.8.3'
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
