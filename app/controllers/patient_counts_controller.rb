@@ -5,7 +5,7 @@ class PatientCountsController < ApplicationController
     @patient_count = current_user.host.patient_counts.new(patient_params)
     if @patient_count.save
       if total_in_line = @patient_count.host.line_count_today
-        @patient_count.host.line_counts.create(patient_count_id: @patient_count, amount: -1) if total_in_line > 0
+        @patient_count.host.line_counts.create(patient_count_id: @patient_count.id, amount: -1) if total_in_line > 0
       end
       redirect_to root_path
     else
