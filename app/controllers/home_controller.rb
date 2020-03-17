@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
   def set_all_markers
     @all_markers = []
-    Host.all.each do |h|
+    Host.where.not(latitude: nil, longitude: nil).each do |h|
       @all_markers.push(
         {
           "lat": h.latitude,

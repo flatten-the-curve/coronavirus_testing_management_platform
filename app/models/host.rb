@@ -3,6 +3,7 @@ class Host < ApplicationRecord
   has_many :patient_counts
   has_many :line_counts
 
+  after_create :geocode
   after_validation :geocode
 
   geocoded_by :full_address
