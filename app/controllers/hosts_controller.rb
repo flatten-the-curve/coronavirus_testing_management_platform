@@ -5,10 +5,9 @@ class HostsController < ApplicationController
     @host = current_user.host
     if @host.update(host_params)
       flash[:success] = "Host updated!"
-      redirect_to root_path
-    else
-      redirect_to root_path
     end
+
+    redirect_to root_path
   end
 
   private
