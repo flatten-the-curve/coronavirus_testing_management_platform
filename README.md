@@ -18,12 +18,12 @@ https://docs.google.com/presentation/d/1dOQSBMMUycuwKto4_SnoCBAIxSTDLVvGNfzxb64Z
 
 ## Table Of Contents
 
-1) Domain registration
-2) Hosting setup
-3) Google Maps API setup
-4) Sendgrid setup
-5) App setup
-6) Example usage
+1. Domain registration
+2. Hosting setup
+3. Google Maps API setup
+4. Sendgrid setup
+5. App setup
+6. Example usage
 
 ## Domain registration
 
@@ -80,20 +80,20 @@ Here is a great resource to get rails up and running: https://www.tutorialspoint
 
 Once you have the repo, follow these steps:
 
-1) bundle install
-2) rake db:create db:migrate
-3) Store your environment variables, from your command line write:
-4) export GOOGLE_API_KEY=<api_key_you_created>
+1. bundle install
+2. rake db:create db:migrate
+3. Store your environment variables, from your command line write:
+4. export GOOGLE_API_KEY=<api_key_you_created>
 
 Run the app locally by running “rails s”, then visit http://localhost:3000 on your local machine and browser of choice.
 
 In order to see the Site Official View, you will need to create a new User and Host through the Admin view, and in order to view the admin view at http://localhost:3000/admin you will need to create a new AdminUser.
 
-1) Run “rails c” to run the rails console
-2) Then create a new AdminUser by running “AdminUser.create(email: “example@gmail.com”, password: “password”)
-3) Then visit http://localhost:3000/admin, sign in with the email and password created.
-4) You can then go to the tab “Testing Sites” and “Location Officials” to create a new Host and User.
-5) The User your create must be associated to a Host, and make sure the host address is correctly populated by Geocoder by  checking the fields “latitude” and “longitude”, if the address is correct, those fields should be populated correctly.
+1. Run “rails c” to run the rails console
+2. Then create a new AdminUser by running “AdminUser.create(email: “example@gmail.com”, password: “password”)
+3. Then visit http://localhost:3000/admin, sign in with the email and password created.
+4. You can then go to the tab “Testing Sites” and “Location Officials” to create a new Host and User.
+5. The User your create must be associated to a Host, and make sure the host address is correctly populated by Geocoder by  checking the fields “latitude” and “longitude”, if the address is correct, those fields should be populated correctly.
 
 You will most likely run into some issues with setup, most can be googled and have been addressed, stay patient and you will get through it.
 
