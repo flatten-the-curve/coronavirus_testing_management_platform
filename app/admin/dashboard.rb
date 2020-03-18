@@ -33,45 +33,50 @@ ActiveAdmin.register_page "Dashboard" do
 end
 
 def getAllLines(host_id=nil)
-    @lineQuery = LineCount.where(created_at: [Time.now.beginning_of_day..Time.now.end_of_day])
-    if (host_id)
-        @lineQuery = @lineQuery.where(host_id: host_id)
-    end
-    return @lineQuery.sum(:amount)
+    lineQuery = LineCount.where(created_at: [Time.current.beginning_of_day..Time.current.end_of_day])
+    lineQuery = lineQuery.where(host_id: host_id)if host_id
+    lineQuery.sum(:amount)
 end
 
 def getAllPatients(host_id=nil)
-    @patientQuery = PatientCount.where(created_at: [Time.now.beginning_of_day..Time.now.end_of_day])
-    if (host_id)
-        @patientQuery = @patientQuery.where(host_id: host_id)
-    end
-    return @patientQuery.sum(:amount)
+    patientQuery = PatientCount.where(created_at: [Time.current.beginning_of_day..Time.current.end_of_day])
+    patientQuery = patientQuery.where(host_id: host_id) if host_id
+    patientQuery.sum(:amount)
 end
 
 
 def getAverageTimes(host_id=nil)
-   @hostTimes = Array.new
-   if (host_id)
-    @query = Host.where(id: host_id)
-   else
-     @query = Host.all
-   end
-   @query.each do |host|
-       @lastTime =  nil
-       @times = Array.new
-       @patientQuery = PatientCount.where(host_id: host.id).where(created_at: [Time.now.beginning_of_day..Time.now.end_of_day]).order('created_at')
-       @patientQuery.each do |patient|
-            if ( !@lastTime )
-                @lastTime = patient.created_at
-                next
-            end
-            @diff = ((patient.created_at - @lastTime) / 60).round(2)
-            @times.push(@diff)
-            @lastTime = patient.created_at
-       end
+    hostTimes = {}
+    averages = Array.new
 
-       @hostTimes.push( (@times.inject{ |sum, el| sum + el }.to_f / @times.size).round(2) )
-   end
+    hosts = Host.all
+    hosts = hosts.where(id: host_id) if host_id
 
-   return (@hostTimes.inject{ |sum, el| sum + el }.to_f / @hostTimes.size).round(2)
+    patientQuery = PatientCount.where(host_id: hosts).where(created_at: [Time.current.beginning_of_day..Time.current.end_of_day]).order('created_at')
+
+    patientQuery.each do |patient|
+        if !hostTimes.has_key?(patient.host_id)
+            hostTimes[patient.host_id] = {
+                "lastTime" => patient.created_at,
+                "times" => Array.new,
+                "average" => nil
+            }
+            next
+        end
+
+        lastTime = hostTimes[patient.host_id]["lastTime"]
+        diff = ((patient.created_at - lastTime) / 60).round(2)
+        hostTimes[patient.host_id]["times"].push(diff)
+        hostTimes[patient.host_id]["lastTime"] = patient.created_at
+        logger.info "Last Time: " + lastTime.to_s(:rfc822)
+    end
+    # @hostTimes.push( (@times.inject{ |sum, el| sum + el }.to_f / @times.size).round(2) )
+
+    hostTimes.select{|k,v| v["times"].count > 0 }.each { |host_id, host_data|
+        average = (hostTimes[host_id]["times"].inject{ |sum, el| sum + el }.to_f / hostTimes[host_id]["times"].size).round(2)
+        hostTimes[host_id]["average"] = average
+        averages.push(average)
+    }
+
+    (averages.inject{ |sum, el| sum + el }.to_f / averages.size).round(2)
 end
