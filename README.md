@@ -46,12 +46,12 @@ Save RAILS_APP_ROOT_DOMAIN as the root domain you just purchased.
 The google maps api is a crucial part of this application, so please follow these steps:
 
 Go to https://console.developers.google.com/
-1) Create a new project called “COVID19-Testing”
-2) Enable the Google Maps Javascript API
-3)You will need to have a verified domain in order to create credentials, create a verified domain by following the steps.
-4) Visit https://console.developers.google.com/apis/credentials/domainverification Follow the steps provided, I had to add a CNAME record to my DNS that pointed to the value google provided
-5)Create API credentials, which will produce an API key that you should keep safe and never 	  store publicly, only store within environment variables.
-6) Restrict your API key to only the Google Maps Javascript API and add the urls that you purchased, so only those urls can access your application. In our case we added the following urls:
+1. Create a new project called “COVID19-Testing”
+2. Enable the Google Maps Javascript API
+3. You will need to have a verified domain in order to create credentials, create a verified domain by following the steps.
+4. Visit https://console.developers.google.com/apis/credentials/domainverification Follow the steps provided, I had to add a CNAME record to my DNS that pointed to the value google provided
+5. Create API credentials, which will produce an API key that you should keep safe and never 	  store publicly, only store within environment variables.
+6. Restrict your API key to only the Google Maps Javascript API and add the urls that you purchased, so only those urls can access your application. In our case we added the following urls:
 
     https://www.atlanta-covid19-testing-sites.com
     https://atlanta-covid19-testing-sites.com
@@ -110,5 +110,4 @@ Testing Site Officials View: there are two main actions that can occur in the te
 If there are 3 individuals working a testing site, one can be administering the test, one can be capturing the patient information and updating the number of test kits used through the platform, and one can be keeping the line count up to date and organized.
 
 Admin View: The admin view allows for new testing sites and testing site officials to be created, as well as showing in real time the number of test kits used, total wait time and testing sites that may need additional resources.
-
 
