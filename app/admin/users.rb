@@ -13,7 +13,7 @@ ActiveAdmin.register User do
   end
 
   filter :name
-  filter :host_id, as: :select, collection: Host.all.map { |x| [x.name.to_s, x.id] }
+  filter :host_id, as: :select, collection: -> { Host.all.map { |x| [x.name.to_s, x.id] } }
 
   form do |f|
     f.inputs do
