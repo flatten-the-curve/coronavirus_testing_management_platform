@@ -23,5 +23,4 @@ class Host < ApplicationRecord
   def patient_count_today
     @patient_count_today ||= patient_counts.where(created_at: [Time.now.beginning_of_day..Time.now.end_of_day]).sum(:amount)
   end
-
 end

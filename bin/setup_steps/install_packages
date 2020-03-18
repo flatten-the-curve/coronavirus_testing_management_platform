@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+. ./bin/colors
+
+set -euo pipefail
+
+status_message="${CLEAR_LINE}[2/4]⏳   Installing Packages"
+
+printf "$status_message: Updating 'gem'"
+gem update --system > /dev/null
+
+printf "$status_message: Ruby Gems"
+gem install bundler --no-document --conservative --quiet --silent > /dev/null
+bundle check > /dev/null 2> >(sed -E -e '/^.*unused .* platforms Bundler is installing.*/d' >&2) || bundle install --quiet > /dev/null

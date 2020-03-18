@@ -18,9 +18,9 @@ ActiveAdmin.register_page "Dashboard" do
       render partial: 'graph', locals: { lines: @all_lines, patients: @all_patients, hosts: Host.all, time: @avg_time, host_id: @host_id }
 
     table_for Host.all do
-      column(:name) { |host| 
+      column(:name) do |host|
         "<a target='_blank' href='#{admin_host_path(host)}'>#{host.name}</a>".html_safe
-      }
+      end
       column :address_1
       column :address_2
       column :city
@@ -70,7 +70,6 @@ def getAverageTimes(host_id=nil)
         hostTimes[patient.host_id]["lastTime"] = patient.created_at
         logger.info "Last Time: " + lastTime.to_s(:rfc822)
     end
-    # @hostTimes.push( (@times.inject{ |sum, el| sum + el }.to_f / @times.size).round(2) )
 
     hostTimes.select{|k,v| v["times"].count > 0 }.each { |host_id, host_data|
         average = (hostTimes[host_id]["times"].inject{ |sum, el| sum + el }.to_f / hostTimes[host_id]["times"].size).round(2)
