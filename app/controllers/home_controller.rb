@@ -25,7 +25,7 @@ class HomeController < ApplicationController
         {
           "lat": h.latitude,
           "lng": h.longitude,
-          "infowindow": "<div>#{h.name}<br><b>Currently In Line: #{h.line_count_today}</b><br><a target='_blank' href='#{h.google_maps_url}'>Route me here!</a></div>",
+          "infowindow": "<div>#{h.name}<br><b>Currently In Line: #{h.line_count_today}</b><br><a target='_blank' href='#{h.google_maps_url}'>Route me here!</a></div>"
         }
       )
     end
