@@ -117,9 +117,9 @@ Admin View: The admin view allows for new testing sites and testing site officia
 
 The environment variables needed to be set in heroku are as follows:
 
-GOOGLE_API_KEY - your Google Maps Javascript api key
-DEFAULT_MAP_CENTER_LAT - the latitude of the default center of your map
-DEFAULT_MAP_CENTER_LON - the longitude of the default center of your map
-RAILS_APP_ROOT_DOMAIN - root domain you are using
-SEND_GRID_USERNAME - which is "apikey" (the literal word "apikey")
-SEND_GRID_API_KEY - your sendgrid api key
+1. GOOGLE_API_KEY - your Google Maps Javascript api key
+2. DEFAULT_MAP_CENTER_LAT - the latitude of the default center of your map
+3. DEFAULT_MAP_CENTER_LON - the longitude of the default center of your map
+4. RAILS_APP_ROOT_DOMAIN - root domain you are using
+5. SEND_GRID_USERNAME - which is "apikey" (the literal word "apikey")
+6. SEND_GRID_API_KEY - your sendgrid api key
