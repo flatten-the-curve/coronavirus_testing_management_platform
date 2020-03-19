@@ -5,6 +5,10 @@
       <a href=<%= new_user_session_path %>>Site Official Login <i class='fa fa-external-link'></i></a>
     <% end %>
   </div>
+  <div class='col-lg-6 offset-lg-3 form-group'>
+    Where are you located?
+    <input id='address-search' value="<%= @current_location&.address %>" placeholder='Search Location' class='autocomplete-search form-control' type='text'>
+  </div>
   <div class='col-lg-12'>
     <div style='width: 100%;'>
       <div id="map" style='width: 100%; height: 600px;'></div>
@@ -16,10 +20,39 @@
   let allMarkers = <%= @all_markers %>
   $(document).ready(function(){
     handler = Gmaps.build('Google');
-    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+    handler.buildMap({
+      provider: {
+        center: <%= @map_center %>
+      },
+      internal: {
+        id: 'map'
+      }
+    }, function(){
       markers = handler.addMarkers(allMarkers);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
+      <% if @current_location.present? %>
+        handler.getMap().setZoom(14)
+      <% else %>
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      <% end %>
+    });
+
+    $("#address-search").autocomplete({
+      source: function( request, response ) {
+        $.ajax( {
+          url: "<%= address_search_index_path %>",
+          data: {
+            search_value: request.term
+          },
+          success: function( data ) {
+            response( data );
+          }
+        })
+      },
+      select: function( event, ui ) {
+        window.location.href = "/?address_search=" + ui.item.value
+      },
+      minLength: 6
     });
   })
 </script>
