@@ -1,0 +1,31 @@
+<div>
+    <select name="host_id" id="host_id">
+        <option value="">All Hosts</option>
+        <%= options_from_collection_for_select(hosts, :id, :name, host_id) %>
+    </select>
+
+
+</div>
+<div style="margin-bottom: 25px">
+    <div class="bs-row">
+        <div class="bs-col-sm-4 bs-col-xs-12 dash-column">
+            <div class="dash-data"><%= patients %></div>
+            Total Patients Treated
+        </div>
+        <div class="bs-col-sm-4 bs-col-xs-12  dash-column">
+            <div class="dash-data"><%= lines %></div>
+            Total Patients in Line
+        </div>
+        <div class="bs-col-sm-3 bs-col-xs-12  dash-column">
+            <div class="dash-data"><%= time %></div>
+            Average Time Between Patients (in Minutes)
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function() {
+    $('#host_id').change(function() {
+        location.href = 'admin?host_id=' + $('#host_id').val();
+    });
+});
+</script>
