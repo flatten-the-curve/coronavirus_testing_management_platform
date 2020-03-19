@@ -77,5 +77,7 @@ def getAverageTimes(host_id=nil)
         averages.push(average)
     }
 
+    return 'N/A' if averages.size == 0
+
     (averages.inject{ |sum, el| sum + el }.to_f / averages.size).round(2)
 end
