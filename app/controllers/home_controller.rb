@@ -1,11 +1,19 @@
 class HomeController < ApplicationController
   def index
+    @questionnaire_answered = session["questionnaire_answered"]
     @user = current_user
     @host = current_user&.host
     @patient_counts = @host&.patient_count_today
     @line_counts = @host&.line_count_today
     set_current_location
     set_all_markers
+  end
+
+  def verify_questionnaire_recaptcha
+    if verify_recaptcha(params["g-recaptcha-response"])
+      session["questionnaire_answered"] = true
+    end
+    redirect_to root_path
   end
 
   private

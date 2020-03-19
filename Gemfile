@@ -12,6 +12,7 @@ gem "underscore-rails", "~> 1.8", ">= 1.8.3"
 gem "bootstrap", "~> 4.4.1"
 gem "jquery-ui-rails"
 gem "jquery-rails"
+gem "recaptcha"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2.4"
 # Use postgresql as the database for Active Record
