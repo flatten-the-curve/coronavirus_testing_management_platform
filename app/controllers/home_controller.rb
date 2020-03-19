@@ -3,23 +3,10 @@ class HomeController < ApplicationController
     @user = current_user
     @host = current_user&.host
     set_current_location
-    if @host
-      set_host_info
-    end
     set_all_markers
   end
 
   private
-
-  def set_host_info
-    @current_host_marker = [{
-      "lat": @host.latitude,
-      "lng": @host.longitude,
-      "infowindow": "<div>#{@host.name}<br><a target='_blank' href='#{@host.google_maps_url}'>Route me here!</a></div>"
-    }].to_json.html_safe
-    @patient_counts = @host.patient_count_today
-    @line_counts = @host.line_count_today
-  end
 
   def set_all_markers
     @all_markers = []
@@ -48,9 +35,9 @@ class HomeController < ApplicationController
       lat: 33.7490,
       lng: -84.3880
     }.to_json.html_safe
-    if params["address_search"]
+    if params["address_search"] # from search bar locaton
       @current_location = Geocoder.search(params["address_search"]).first
-    elsif request&.location&.address.present?
+    elsif request&.location&.address.present? # looks for current location using Geocoder and current browser IP
       @current_location = Geocoder.search(request.location.address).first
     end
     if @current_location.present?
