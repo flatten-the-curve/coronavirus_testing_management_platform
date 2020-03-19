@@ -24,6 +24,7 @@ https://docs.google.com/presentation/d/1dOQSBMMUycuwKto4_SnoCBAIxSTDLVvGNfzxb64Z
 4. Sendgrid setup
 5. App setup
 6. Example usage
+7. Environment Variables
 
 ## Domain registration
 
@@ -111,3 +112,14 @@ If there are 3 individuals working a testing site, one can be administering the 
 
 Admin View: The admin view allows for new testing sites and testing site officials to be created, as well as showing in real time the number of test kits used, total wait time and testing sites that may need additional resources.
 
+
+## Environment Variables
+
+The environment variables needed to be set in heroku are as follows:
+
+GOOGLE_API_KEY - your Google Maps Javascript api key
+DEFAULT_MAP_CENTER_LAT - the latitude of the default center of your map
+DEFAULT_MAP_CENTER_LON - the longitude of the default center of your map
+RAILS_APP_ROOT_DOMAIN - root domain you are using
+SEND_GRID_USERNAME - which is "apikey" (the literal word "apikey")
+SEND_GRID_API_KEY - your sendgrid api key
