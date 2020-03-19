@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+. ./bin/colors
+
+set -euo pipefail
+
+status_message="${CLEAR_LINE}[3/4]⏳   Checking ENV Vars"
+
+printf "$status_message"
+
+if [[ ! -f .env ]]; then
+  cp .env.example .env
+fi
+
+if grep 'imma_s3kr3t' .env -q; then
+  printf "${CLEAR_LINE}⚠️${YELLOW}   You have some 'imma_s3kr3t' ENV Var values in your '.env' file.${NO_COLOR}\n"
+  printf "${CLEAR_LINE}ℹ️   Please contact a teammate to get real values for those secrets.\n"
+fi
+
+printf "$status_message"

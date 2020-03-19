@@ -4,7 +4,13 @@ Rails.application.routes.draw do
   get 'home/index'
   devise_for :users
   root "home#index"
+  resources :home do
+    collection do
+      post :verify_questionnaire_recaptcha
+    end
+  end
   resources :hosts
+  resources :address_search, only: [:index]
   resources :patient_counts
   resources :line_counts
   resources :questionnaire

@@ -32,5 +32,4 @@ ActiveAdmin.register Host do
     end
     f.actions
   end
-
 end

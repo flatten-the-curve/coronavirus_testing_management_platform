@@ -10,8 +10,19 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "admin-bootstrap-grid";
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.dash-column {
+  text-align: center;
+}
+.dash-data {
+  font-size: 60px;
+  font-weight: bold;
+  color: blue;
+}
+

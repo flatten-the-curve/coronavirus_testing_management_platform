@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+. ./bin/colors
+
+set -euo pipefail
+
+status_message="[1/4]🔎   Checking dependencies"
+
+printf "$status_message"
+
+ensure_dependency_available() {
+  dependency=$1
+  binary=${2:-$1} # default to dependecy
+
+  if ! command -v "$binary" > /dev/null; then
+    printf "${CLEAR_LINE}💀${RED}   You must install $dependency on your system before setup can continue${NO_COLOR}\n"
+    printf "ℹ️   On macOS🍎  you should 'brew install $dependency'\n"
+    exit -1
+  fi
+}
+
+ensure_correct_ruby_active() {
+  ruby_version=$(bundle platform --ruby)
+
+  if ! [[ $(ruby --version) =~ "$ruby_version" ]]; then
+    printf "${CLEAR_LINE}💀${RED}   You are not using Ruby version $ruby_version.${NO_COLOR}\n"
+    printf "ℹ️   You can try using 'rbenv' to install and manage Ruby versions.\n"
+    exit -1
+  fi
+}
+
+ensure_node_installed() {
+  if ! command -v node > /dev/null; then
+    printf "${CLEAR_LINE}💀${RED}   You must install node on your system before setup can continue${NO_COLOR}\n"
+    printf "ℹ️   On macOS🍎 you should try 'nodenv' or maybe 'brew install node'\n"
+    exit -1
+  fi
+}
+
+ensure_yarn_installed() {
+  if ! command -v yarn > /dev/null; then
+    printf "${CLEAR_LINE}💀${RED}   You must install yarn on your system before setup can continue${NO_COLOR}\n"
+    printf "ℹ️   On macOS🍎 you should try 'brew install yarn' or 'brew install yarn --without-node'\n"
+    exit -1
+  fi
+}
+
+ensure_dependency_available heroku-toolbelt heroku
+ensure_dependency_available postgresql postgres
+
+ensure_correct_ruby_active
+ensure_node_installed
+ensure_yarn_installed
