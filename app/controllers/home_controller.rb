@@ -10,8 +10,10 @@ class HomeController < ApplicationController
 
   def set_all_markers
     @all_markers = []
-    lat = [32.7490..34.7490]
-    lon = [-85.3880..-83.3880]
+    center_lat = ENV["DEFAULT_MAP_CENTER_LAT"].to_f
+    center_lon = ENV["DEFAULT_MAP_CENTER_LON"].to_f
+    lat = [(center_lat - 1)..(center_lat + 1)]
+    lon = [(center_lon - 1)..(center_lon + 1)]
     if @current_location.present?
       new_lat = @current_location.data["lat"].to_f
       new_lon = @current_location.data["lon"].to_f
@@ -32,8 +34,8 @@ class HomeController < ApplicationController
 
   def set_current_location
     @map_center = {
-      lat: 33.7490,
-      lng: -84.3880
+      lat: ENV["DEFAULT_MAP_CENTER_LAT"].to_f,
+      lng: ENV["DEFAULT_MAP_CENTER_LON"].to_f
     }.to_json.html_safe
     if params["address_search"] # from search bar locaton
       @current_location = Geocoder.search(params["address_search"]).first
