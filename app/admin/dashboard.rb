@@ -2,12 +2,7 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: "Dashboard"
 
   content title: "All Testing Sites" do
-    vars = request.query_parameters
-
-    host_id = vars["host_id"]
-    if host_id == ""
-      host_id = nil
-    end
+    host_id = params[:host_id].presence
 
     all_lines = sum_all_lines(host_id)
     all_patients = sum_all_patients(host_id)
