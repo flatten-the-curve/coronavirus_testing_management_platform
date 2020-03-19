@@ -4,16 +4,16 @@ ActiveAdmin.register_page "Dashboard" do
   content title: "All Testing Sites" do
     vars = request.query_parameters
 
-    @host_id = vars["host_id"]
-    if @host_id == ""
-      @host_id = nil
+    host_id = vars["host_id"]
+    if host_id == ""
+      host_id = nil
     end
 
-    @all_lines = sum_all_lines(@host_id)
-    @all_patients = sum_all_patients(@host_id)
-    @avg_time = calculate_average_times(@host_id)
+    all_lines = sum_all_lines(host_id)
+    all_patients = sum_all_patients(host_id)
+    avg_time = calculate_average_times(host_id)
 
-    render partial: "graph", locals: {lines: @all_lines, patients: @all_patients, hosts: Host.all, time: @avg_time, host_id: @host_id}
+    render partial: "graph", locals: {lines: all_lines, patients: all_patients, hosts: Host.all, time: avg_time, host_id: host_id}
 
     table_for Host.all do
       column(:name) do |host|
