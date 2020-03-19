@@ -23,8 +23,9 @@ https://docs.google.com/presentation/d/1dOQSBMMUycuwKto4_SnoCBAIxSTDLVvGNfzxb64Z
 3. Google Maps API setup
 4. Sendgrid setup
 5. App setup
-6. Example usage
-7. Environment Variables
+6. Recaptcha Setup
+7. Example usage
+8. Environment Variables
 
 ## Domain registration
 
@@ -98,6 +99,18 @@ In order to see the Site Official View, you will need to create a new User and H
 
 You will most likely run into some issues with setup, most can be googled and have been addressed, stay patient and you will get through it.
 
+## Recaptcha Setup
+
+Recaptcha is used to prevent bots from overwhelming your site and wasting you google maps API calls by implementing a simple checkbox that says "I am not a robot".
+
+To setup, visit https://www.google.com/recaptcha/admin/create
+
+Choose V2 "Checkbox"
+
+Input the domains you have purchased.
+
+Save RECATPCHA_SITE_KEY and RECATPCHA_SECRET_KEY as environment variables.
+
 ## Example usage
 
 This platform can be used the following way.
@@ -123,3 +136,5 @@ The environment variables needed to be set in heroku are as follows:
 4. RAILS_APP_ROOT_DOMAIN - root domain you are using
 5. SEND_GRID_USERNAME - which is "apikey" (the literal word "apikey")
 6. SEND_GRID_API_KEY - your sendgrid api key
+7. RECATPCHA_SECRET_KEY - Recaptcha secret key
+8. RECATPCHA_SITE_KEY - Recaptcha site key
