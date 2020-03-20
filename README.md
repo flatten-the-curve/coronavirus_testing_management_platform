@@ -17,8 +17,7 @@ Admin management: Full admin suite to create/edit testing site officials, testin
 
 Some local cities will not immediately see the need for more public testing centers and will need a digestible way of analyzing this solution, so we created a slide deck to explain why cities should implement this platform.
 
-https://docs.google.com/presentation/d/1dOQSBMMUycuwKto4_SnoCBAIxSTDLVvGNfzxb64Z7nI/edit#slide=id.g718b396cd4_0_330
-
+https://docs.google.com/presentation/d/1dOQSBMMUycuwKto4_SnoCBAIxSTDLVvGNfzxb64Z7nI/edit#slide=id.p
 
 ## Table Of Contents
 
