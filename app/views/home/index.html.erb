@@ -23,9 +23,31 @@
   <% else %>
     <div class='row' style='margin-top: 20px;'>
       <div class='col-lg-6 offset-lg-3'>
-        Please prove you are not a robot. #FlattenTheCurve
+        <h1>#FlattenTheCurve</h1>
+        <b>If you develop emergency warning signs for COVID-19 seek medical attention immediately.</b><br>
+        Emergency warning signs include*:
+        <ul>
+          <li>Difficulty breathing or shortness of breath</li>
+          <li>Persistent pain or pressure in the chest</li>
+          <li>New confusion or inability to arouse</li>
+          <li>Bluish lips or face</li>
+        </ul>
+        <br>
+        *This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning.
+        <br>
+        For all medical emergencies, please call 911.
+        <br>
+        Source: <a target='_blank' href='https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html'>CDC Website</a>
+      </div>
+      <div class='col-lg-6 offset-lg-3'>
+        <br>
         <%= form_tag(verify_questionnaire_recaptcha_home_index_path) do |f| %>
-          <%= recaptcha_tags %>
+          <div class="form-check text-left">
+            Please confirm you are showing symptoms:<br>
+            <input required class="form-check-input form-control position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+          </div>
+          <br>Please prove you are not a robot.
+          <%= recaptcha_tags %><br>
           <button type='submit' class='btn btn-primary'>Submit</button>
         <% end %>
       </div>
