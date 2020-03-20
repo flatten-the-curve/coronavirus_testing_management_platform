@@ -1,17 +1,27 @@
 Rails.application.routes.draw do
+  constraints(host: /^www\./i) do
+    match "(*any)", via: :all, to: redirect { |params, request|
+      URI.parse(request.url).tap { |uri| uri.host.sub!(/^www\./i, "") }.to_s
+    }
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get "home/index"
+
   devise_for :users
-  root "home#index"
+
+  get "home/index"
+
   resources :home do
     collection do
       post :verify_questionnaire_recaptcha
     end
   end
+  
   resources :hosts
   resources :address_search, only: [:index]
   resources :patient_counts
   resources :line_counts
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  root "home#index"
 end
