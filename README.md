@@ -1,5 +1,9 @@
 # Coronavirus Testing Management Platform
 
+If you need help setting this platform up, please email me at brandon.cummings@berkeley.edu, we are more than happy to help set this up for any city.
+
+-Brandon
+
 ## Introduction
 
 This platform was created for local cities or municipalities to help manage corona virus testing sites. This platform accomplishes 3 main goals:
@@ -45,6 +49,7 @@ Setup the heroku app and prepare an app to push to from your command line. Head 
 Save RAILS_APP_ROOT_DOMAIN as the root domain you just purchased.
 
 ## Google Maps API setup
+
 The google maps api is a crucial part of this application, so please follow these steps:
 
 Go to https://console.developers.google.com/
@@ -72,11 +77,9 @@ Also save to your heroku config vars SEND_GRID_USERNAME with the value of “api
 
 Fork this repo so that you can push any changes to your own custom repository.
 
-Once pulled down, make sure you are running:
+Once pulled down, run:
 
-Ruby 2.6.4
-Rails 5.2+
-Postgres
+rake db:create
 
 Here is a great resource to get rails up and running: https://www.tutorialspoint.com/ruby-on-rails/rails-installation.htm
 
@@ -86,6 +89,8 @@ Once you have the repo, follow these steps:
 2. rake db:create db:migrate
 3. Store your environment variables, from your command line write:
 4. export GOOGLE_API_KEY=<api_key_you_created>
+5. export RECAPTCHA_SITE_KEY=<recaptcha site key>
+6. export RECAPTCHA_SECRET_KEY=<recaptcha secret key>
 
 Run the app locally by running “rails s”, then visit http://localhost:3000 on your local machine and browser of choice.
 
@@ -109,7 +114,7 @@ Choose V2 "Checkbox"
 
 Input the domains you have purchased.
 
-Save RECATPCHA_SITE_KEY and RECATPCHA_SECRET_KEY as environment variables.
+Save RECATPCHA_SITE_KEY and RECATPCHA_SECRET_KEY as environment variables on your heroku instance.
 
 ## Example usage
 
@@ -117,14 +122,13 @@ This platform can be used the following way.
 
 A local government IT team sets up the platform and designates where in the city a testing site will be located and how many officials will work at each location.
 
-Citizen View: The city will market to the citizens the url of the site, the citizen can self diagnose and find a testing site if needed.
+Citizen View: The city will market to the citizens the url of the site, the citizen can self diagnose symptoms and find a testing site if needed.
 
 Testing Site Officials View: there are two main actions that can occur in the testing site officials view, increasing the number of test kits used, and keeping track of people in line waiting to receive a test kit.
 
 If there are 3 individuals working a testing site, one can be administering the test, one can be capturing the patient information and updating the number of test kits used through the platform, and one can be keeping the line count up to date and organized.
 
-Admin View: The admin view allows for new testing sites and testing site officials to be created, as well as showing in real time the number of test kits used, total wait time and testing sites that may need additional resources.
-
+Admin View: The admin view allows for new testing sites and testing site officials to be created/updated, as well as showing in real time the number of test kits used, total wait time and testing sites that may need additional resources, per testing site.
 
 ## Environment Variables
 
