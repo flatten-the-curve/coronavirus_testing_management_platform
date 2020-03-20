@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "home/index"
+
+  resources :home do
+    collection do
+      post :verify_questionnaire_recaptcha
+    end
+  end
+  
   resources :hosts
   resources :address_search, only: [:index]
   resources :patient_counts

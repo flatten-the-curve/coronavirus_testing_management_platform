@@ -18,5 +18,17 @@
     </div>
   </div>
 <% else %>
-  <%= render "locator_map.html" %>
+  <% if @questionnaire_answered %>
+    <%= render "locator_map.html" %>
+  <% else %>
+    <div class='row' style='margin-top: 20px;'>
+      <div class='col-lg-6 offset-lg-3'>
+        Please prove you are not a robot. #FlattenTheCurve
+        <%= form_tag(verify_questionnaire_recaptcha_home_index_path) do |f| %>
+          <%= recaptcha_tags %>
+          <button type='submit' class='btn btn-primary'>Submit</button>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 <% end %>
