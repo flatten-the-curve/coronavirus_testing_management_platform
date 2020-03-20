@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def verify_questionnaire_recaptcha
-    if verify_recaptcha(params["g-recaptcha-response"])
+    if params["g-recaptcha-response"].present? && verify_recaptcha(params["g-recaptcha-response"])
       session["questionnaire_answered"] = true
     end
     redirect_to root_path
